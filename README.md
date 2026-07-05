@@ -77,6 +77,38 @@ Even if an answer is factually correct, it might not fully address the user’s 
 By introducing self-reflection at every step, Self-RAG makes retrieval more reliable, preventing hallucinations and ensuring the final answer is grounded and relevant to the user’s question.
 
 
+<img width="460" height="545" alt="image" src="https://github.com/user-attachments/assets/cc22b72b-7c24-449b-af5c-dd7310e81eef" />
+
+
+
+What Is Corrective RAG (CRAG)?
+Corrective retrieval-augmented generation (CRAG) is an improved version of RAG that aims to make language models more accurate.
+
+While traditional RAG simply uses retrieved documents to help generate text, CRAG takes it a step further by actively checking and refining these documents to ensure they are relevant and accurate. This helps reduce errors or hallucinations where the model might produce incorrect or misleading information.
+
+
+<img width="1442" height="1186" alt="image" src="https://github.com/user-attachments/assets/a458b35e-16dd-49fc-84a7-2ad014980d3b" />
+
+
+
+The CRAG framework operates through a few key steps, which involve a retrieval evaluator and specific corrective actions.
+
+For any given input query, a standard retriever first pulls a set of documents from a knowledge base. These documents are then reviewed by a retrieval evaluator to determine each document's relevance to the query.
+
+In CRAG, the retrieval evaluator is a fine-tuned T5-large model. The evaluator assigns a confidence score to each document, categorizing them into three levels of confidence:
+
+Correct: If at least one document scores above the upper threshold, it is considered correct. The system then applies a knowledge refinement process, using a decompose-then-recompose algorithm to extract the most important and relevant knowledge strips while filtering out any irrelevant or noisy data within the documents. This ensures that only the most accurate and relevant information is retained for the generation process.
+Incorrect: If all documents fall below a lower threshold, they are marked as incorrect. In this case, CRAG discards all the retrieved documents and instead performs a web search to gather new, potentially more accurate external knowledge. This step extends the retrieval process beyond static or limited knowledge base by leveraging the vast and dynamic information available on the web, increasing the likelihood of retrieving relevant and accurate data.
+Ambiguous: When the retrieved documents contain mixed results, it will be considered ambiguous. In this case, CRAG combines both strategies: it refines information from the initially retrieved documents and incorporates additional knowledge obtained from web searches.
+After one of these actions is taken, the refined knowledge is used to generate the final response.
+
+CRAG vs. traditional RAG
+CRAG makes several key improvements over traditional RAG. One of its biggest advantages is its ability to fix errors in the information it retrieves. The retrieval evaluator in CRAG helps spot when information is wrong or irrelevant, so it can be corrected before it affects the final output. This means CRAG provides more accurate and reliable information, cutting down on errors and misinformation.
+
+CRAG also excels in making sure the information is both relevant and accurate. While traditional RAG might only check relevance scores, CRAG goes further by refining the documents to ensure they are not just relevant but also precise. It filters out irrelevant details and focuses on the most important points, so the generated text is based on accurate information.
+
+
+<img width="496" height="1124" alt="image" src="https://github.com/user-attachments/assets/f09420f1-ce28-438b-ba3b-773c77512fa8" />
 
 
 
