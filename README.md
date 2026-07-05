@@ -40,7 +40,6 @@ Now that the source data has been broken down into smaller parts, it needs to be
 
 Document embeddings let the system match user queries to relevant information based on meaning rather than exact keyword overlap. A query about “fix my laptop screen” will match a chunk about “display troubleshooting” even though the words differ.
 
-If you’d like to learn more about how text data is converted into vector representations, check out our tutorial on text embeddings with the OpenAI API.
 
 Step 4: Handling user queries
 When a user query enters the system, it must also be converted into an embedding or vector representation. The same model must be used for both the document and query embedding to ensure uniformity between the two.
@@ -52,7 +51,30 @@ These chunks are considered to be the most relevant to the user’s query.
 Step 5: Generating responses with an LLM
 The retrieved text chunks, along with the initial user query, are fed into a language model. The algorithm will use this information to generate a coherent response to the user’s questions through a chat interface.
 
+Here is a simplified flowchart summarizing how RAG works:
+
+
+
 <img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/3b7cf5ff-bd8a-4fe5-8a3b-1b5cb7e52ccf" />
+
+
+Vector databases like Pinecone, ChromaDB, FAISS, and Weaviate are purpose-built for this problem. They store embeddings and perform fast approximate nearest-neighbor (ANN) search, returning the most relevant chunks in milliseconds even across millions of documents.
+
+
+What Is Self-RAG?
+Self-RAG introduces iterative reasoning and self-evaluation, allowing the system to dynamically adjust retrieval and generation until a high-quality response is achieved. Instead of treating RAG as a one-shot process, self-RAG incorporates feedback loops to make smarter decisions at every step.
+
+The Self-RAG process involves four key decisions:
+
+Should retrieval happen?
+The system first decides whether to retrieve documents based on the question alone or based on an initial answer attempt. This avoids unnecessary retrieval and enables dynamic adaptation.
+Are the retrieved documents relevant?
+Each retrieved document is independently evaluated for relevance. If a document is not useful for answering the query, it is discarded before generation.
+Is the generated response grounded in the retrieved documents?
+After generating an answer, the system checks whether all claims in the response are supported by the retrieved content. If unsupported statements are found, the system can attempt to refine the response.
+Does the response actually answer the user’s question?
+Even if an answer is factually correct, it might not fully address the user’s question. Given the answer and user’s question, the system will predict if the final answer is useful or not (binary) and decide whether to regenerate or stop.
+By introducing self-reflection at every step, Self-RAG makes retrieval more reliable, preventing hallucinations and ensuring the final answer is grounded and relevant to the user’s question.
 
 
 
