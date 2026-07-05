@@ -10,7 +10,7 @@ Vector embeddings are digital fingerprints for words or other pieces of data. In
 Vector embeddings are a valuable technique for transforming complex data into a format suitable for machine learning algorithms. By converting high-dimensional and categorical data into lower-dimensional, continuous representations, embeddings enhance model performance and computational efficiency while preserving underlying data patterns.
 
 
-What Is Retrieval Augmented Generation (RAG)?
+##What Is Retrieval Augmented Generation (RAG)?
 Large language models (LLMs) like have brought remarkable progress, but they come with limitations: outdated knowledge, hallucinations, and generic responses. RAG solves this by grounding model outputs in Retrieval Augmented Generation (RAG).
 RAG connects LLMs to external data sources, letting them retrieve relevant information at query time instead of relying solely on training data
 The pipeline has five stages: data collection, chunking, embedding, retrieval, and generation
@@ -61,7 +61,7 @@ Here is a simplified flowchart summarizing how RAG works:
 Vector databases like Pinecone, ChromaDB, FAISS, and Weaviate are purpose-built for this problem. They store embeddings and perform fast approximate nearest-neighbor (ANN) search, returning the most relevant chunks in milliseconds even across millions of documents.
 
 
-What Is Self-RAG?
+##What Is Self-RAG?
 Self-RAG introduces iterative reasoning and self-evaluation, allowing the system to dynamically adjust retrieval and generation until a high-quality response is achieved. Instead of treating RAG as a one-shot process, self-RAG incorporates feedback loops to make smarter decisions at every step.
 
 The Self-RAG process involves four key decisions:
@@ -81,7 +81,7 @@ By introducing self-reflection at every step, Self-RAG makes retrieval more reli
 
 
 
-What Is Corrective RAG (CRAG)?
+##What Is Corrective RAG (CRAG)?
 Corrective retrieval-augmented generation (CRAG) is an improved version of RAG that aims to make language models more accurate.
 
 While traditional RAG simply uses retrieved documents to help generate text, CRAG takes it a step further by actively checking and refining these documents to ensure they are relevant and accurate. This helps reduce errors or hallucinations where the model might produce incorrect or misleading information.
