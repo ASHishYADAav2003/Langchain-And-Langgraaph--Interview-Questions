@@ -112,9 +112,7 @@ CRAG also excels in making sure the information is both relevant and accurate. W
 
 
 
-> ## Documentation Index
-> Fetch the complete documentation index at: https://docs.langchain.com/llms.txt
-> Use this file to discover all available pages before exploring further.
+
 
 # Persistence
 
@@ -224,16 +222,7 @@ When a subgraph updates state, the parent graph may not see the changes immediat
 * [Use checkpointers](/oss/python/langgraph/checkpointers) to persist and inspect thread state.
 * [Use stores](/oss/python/langgraph/stores) to persist durable data across threads.
 
-***
 
-<div className="source-links">
-  <Callout icon="terminal-2">
-    [Connect these docs](/use-these-docs) to Claude, VSCode, and more via MCP for real-time answers.
-  </Callout>
-
-  <Callout icon="edit">
-    [Edit this page on GitHub](https://github.com/langchain-ai/docs/edit/main/src/oss/langgraph/persistence.mdx) or [file an issue](https://github.com/langchain-ai/docs/issues/new/choose).
-  </Callout>
 </div>
 
 
