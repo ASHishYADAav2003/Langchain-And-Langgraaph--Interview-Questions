@@ -244,12 +244,12 @@ Time travel: Checkpointers allow for “time travel”, allowing users to replay
 Fault-tolerance: Checkpointing provides fault-tolerance and error recovery: if one or more nodes fail at a given superstep, you can restart your graph from the last successful step.
 Pending writes: When a graph node fails mid-execution at a given super-step, LangGraph stores pending checkpoint writes from any other nodes that completed successfully at that super-step. When you resume graph execution from that super-step you don’t re-run the successful nodes.
 ​
-Core concepts
+## Core concepts
 ​
 Threads
 A thread is a unique ID or thread identifier assigned to each checkpoint saved by a checkpointer. It contains the accumulated state of a sequence of runs. When a run is executed, the state of the underlying graph of the assistant will be persisted to the thread.
 When invoking a graph with a checkpointer, you must specify a thread_id as part of the configurable portion of the config:
-{"configurable": {"thread_id": "1"}}
+**{"configurable": {"thread_id": "1"}}**
 A thread’s current and historical state can be retrieved. To persist state, a thread must be created prior to executing a run. The LangSmith API provides several endpoints for creating and managing threads and thread state. See the API reference for more details.
 The checkpointer uses thread_id as the primary key for storing and retrieving checkpoints. Without it, the checkpointer cannot save state or resume execution after an interrupt, since the checkpointer uses thread_id to load the saved state.
 ​
